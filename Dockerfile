@@ -15,4 +15,6 @@ RUN curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archi
 RUN mkdir -v -p /github/home/.local/share/godot/export_templates/ && \
     mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable /github/home/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
 
+RUN chmod -R 755 /github/home/.local/share/godot/export_templates/
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
