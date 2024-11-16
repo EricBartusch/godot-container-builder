@@ -1,3 +1,36 @@
-# godot-container-builder
+# Build and Upload to itch.io Reusable Workflow
 
-This repo contains a Dockerfile and reusable workflow to build and deploy Godot projects to itch.io
+This repository contains a reusable GitHub Actions workflow for building and uploading Godot web games to itch.io.
+
+## Inputs
+
+| Name       | Type    | Required |  Description                         |
+|------------|---------|----------|--------------------------------------|
+| game_name  | string  | true     |  The name of the game to be uploaded |
+
+## Secrets
+
+| Name       | Type    | Required |  Description                                                                         |
+|------------|---------|----------|--------------------------------------------------------------------------------------| 
+| USER       | string  | true     |  Your itch.io username                                                               |
+| API_KEY    | string  | true     |  Your [itch.io API key](https://itch.io/docs/api/serverside#authentication/api-keys) |
+
+
+## Usage
+
+> ⚠️ **Important:** The game must already exist as a web game in itch.io. This will not create a brand new game.
+
+```yaml
+name: Build and Upload
+
+on:
+  push:
+
+jobs:
+  build-and-upload:
+    uses: EricBartusch/godot-container-builder/.github/workflows/reusable-godot-deploy.yaml@v1
+    with:
+      game_name: SuperAwesomeGame
+    secrets:
+      USER: ${{ secrets.USER }}
+      API_KEY: ${{ secrets.API_KEY }}
