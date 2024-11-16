@@ -3,7 +3,6 @@ name: Build and Push Docker Image
 on:
   push:
 
-
 env:
   IMAGE_NAME: godot-container-builder
 
