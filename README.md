@@ -4,9 +4,10 @@ This repository contains a reusable GitHub Actions workflow for building and upl
 
 ## Inputs
 
-| Name       | Type    | Required |  Description                         |
-|------------|---------|----------|--------------------------------------|
-| game_name  | string  | true     |  The name of the game to be uploaded |
+| Name       | Type    | Required |  Description                                                        |
+|------------|---------|----------|---------------------------------------------------------------------|
+| game_name  | string  | true     |  The name of the game to be uploaded                                |
+| version    | string  | false    |  The tagged  github release that will be created with the built zip |
 
 ## Secrets
 
@@ -31,6 +32,7 @@ jobs:
     uses: EricBartusch/godot-container-builder/.github/workflows/reusable-godot-deploy.yaml@v1
     with:
       game_name: SuperAwesomeGame
+      version: v1.0.0
     secrets:
       USER: ${{ secrets.USER }}
       API_KEY: ${{ secrets.API_KEY }}

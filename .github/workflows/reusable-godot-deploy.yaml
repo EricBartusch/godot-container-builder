@@ -6,6 +6,9 @@ on:
       game_name:
         required: true
         type: string
+      version:
+          required: false
+          type: string  
     secrets:
       USER:
         required: true
@@ -46,4 +49,26 @@ jobs:
     - name: Upload to itch.io 
       run: butler push build/web ${{ secrets.USER }}/${{ inputs.GAME_NAME }}:html5
       env:
-        BUTLER_API_KEY: ${{ secrets.API_KEY }}  
+        BUTLER_API_KEY: ${{ secrets.API_KEY }}
+
+    - name: Create Zip File 
+      if: ${{ inputs.version != '' }}
+      run: | 
+        cd build
+        zip -r ${{ inputs.game_name }}.zip web/*
+        
+    - name: Create Release
+      if: ${{ inputs.version != '' }}
+      id: create_release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ inputs.version }}
+
+    - name: Upload Release Asset
+      if: ${{ inputs.version != '' }}
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ inputs.version }}
+        files: |
+          build/${{ inputs.game_name }}.zip
+          
