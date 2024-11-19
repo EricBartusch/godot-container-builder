@@ -56,7 +56,7 @@ jobs:
       run: | 
         cd build/web zip -r ${{ inputs.game_name }}.zip ./*
        
-    - run: ls    
+    - run: ls build/web   
         
     - name: Create Release
       if: ${{ inputs.version != '' }}
