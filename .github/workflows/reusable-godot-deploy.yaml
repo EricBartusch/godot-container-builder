@@ -61,16 +61,12 @@ jobs:
       if: ${{ inputs.version != '' }}
       id: create_release
       uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ inputs.version }}
 
     - name: Upload Release Asset
       if: ${{ inputs.version != '' }}
       uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ inputs.version }}
         files: |
