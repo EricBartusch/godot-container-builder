@@ -33,6 +33,8 @@ jobs:
     with:
       game_name: SuperAwesomeGame
       version: v1.0.0
+    permissions: 
+      contents: write  
     secrets:
       USER: ${{ secrets.USER }}
       API_KEY: ${{ secrets.API_KEY }}
